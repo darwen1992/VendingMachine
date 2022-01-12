@@ -13,6 +13,7 @@ public class VendingMachineImpl implements VendingMachine {
     public void addCurrency(double amount) {
 if (amount==1||amount==2||amount==5||amount==10||amount==20||amount==50||amount==100||amount==200||amount==500||amount==1000){
      depositPool=depositPool+amount;
+    System.out.println("Deposit Added "+depositPool);
     }
 
     else{
@@ -27,8 +28,9 @@ if (amount==1||amount==2||amount==5||amount==10||amount==20||amount==50||amount=
         boolean fin=false;
         for (int i=0;i<products.length;i++){
             if (products[i].getId()==id){
-                if(products[i].getPrice()>=depositPool){
+                if(products[i].getPrice()<=depositPool){
                     fin=true;
+                    depositPool=depositPool-products[i].getPrice();
                     return products[i];
                 }
                 else {
@@ -56,7 +58,7 @@ if (amount==1||amount==2||amount==5||amount==10||amount==20||amount==50||amount=
 String disc="";
         for (int i=0;i<products.length;i++){
             if (products[i].getId()==id){
-                disc=products[i].getId()+products[i].getProductName()+products[i].getPrice();
+                disc=products[i].getId()+"  "+products[i].getProductName()+"  "+products[i].getPrice();
             }}
         return disc;
     }
@@ -70,9 +72,9 @@ String disc="";
     @Override
     public String[] getProduct() {
         String st[]=new String[3];
-        st[0]=products[0].getId()+products[0].getProductName()+products[0].getPrice();
-        st[1]=products[1].getId()+products[1].getProductName()+products[1].getPrice();
-        st[2]=products[2].getId()+products[2].getProductName()+products[2].getPrice();
+        st[0]=products[0].getId()+"  "+products[0].getProductName()+"  "+products[0].getPrice();
+        st[1]=products[1].getId()+"  "+products[1].getProductName()+"  "+products[1].getPrice();
+        st[2]=products[2].getId()+"  "+products[2].getProductName()+"  "+products[2].getPrice();
 
         return st;
     }
